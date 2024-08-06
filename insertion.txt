@@ -1,0 +1,24 @@
+public static void inser(int[] arr){
+		for(int i=1;i<arr.length;i++){
+			for(int j=i;j>0;j--){
+				if(arr[j]<arr[j-1]){
+					int temp=arr[j];
+					arr[j]=arr[j-1];
+					arr[j-1]=temp;
+				}
+				else{
+					break;
+				}
+			}
+		}
+	}
+
+
+////call
+
+int arr1[] = {2,45,23,6,7,12,3};
+		inser(arr1);
+		
+		for (int num : arr1) {
+            System.out.print(num + " ");
+        }
