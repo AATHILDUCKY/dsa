@@ -1,0 +1,74 @@
+public class SimpleQueue {
+    private int[] queue;
+    private int front;
+    private int rear;
+    private int size;
+    private int capacity;
+
+    // Constructor to initialize the queue
+    public SimpleQueue(int capacity) {
+        this.capacity = capacity;
+        this.queue = new int[capacity];
+        this.front = 0;
+        this.rear = -1;
+        this.size = 0;
+    }
+
+    // Method to add an element to the queue
+    public void enqueue(int item) {
+        if (isFull()) {
+            System.out.println("Queue is full");
+            return;
+        }
+        rear = (rear + 1) % capacity;
+        queue[rear] = item;
+        size++;
+    }
+
+    // Method to remove an element from the queue
+    public int dequeue() {
+        if (isEmpty()) {
+            System.out.println("Queue is empty");
+            return -1;
+        }
+        int item = queue[front];
+        front = (front + 1) % capacity;
+        size--;
+        return item;
+    }
+
+    // Method to check if the queue is empty
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    // Method to check if the queue is full
+    public boolean isFull() {
+        return size == capacity;
+    }
+
+    // Method to get the size of the queue
+    public int getSize() {
+        return size;
+    }
+
+    // Main method to test the queue implementation
+    public static void main(String[] args) {
+        SimpleQueue queue = new SimpleQueue(5);
+
+        queue.enqueue(10);
+        queue.enqueue(20);
+        queue.enqueue(30);
+        queue.enqueue(40);
+        queue.enqueue(50);
+
+        System.out.println("Dequeue: " + queue.dequeue());
+        System.out.println("Dequeue: " + queue.dequeue());
+
+        queue.enqueue(60);
+
+        while (!queue.isEmpty()) {
+            System.out.println("Dequeue: " + queue.dequeue());
+        }
+    }
+}
